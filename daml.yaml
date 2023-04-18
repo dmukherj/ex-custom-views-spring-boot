@@ -1,4 +1,4 @@
-sdk-version: 2.5.0
+sdk-version: 2.6.0
 name: quickstart
 source: daml
 init-script: Main:initialize

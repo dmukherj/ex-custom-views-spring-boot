@@ -85,3 +85,12 @@ You should be able to see events projected to the database by checking the datab
 - `GET /events`
 - `GET /events/observer/<party>`
 - `GET /events/count`
+
+Install k6 from:
+https://k6.io/docs/get-started/installation/
+
+Run k6 test with following command:
+(This will create 10K IOU contracts on ledger)
+```
+k6 run k6\test.js -e ISSUER_PARTY="$PARTY_ID"
+```

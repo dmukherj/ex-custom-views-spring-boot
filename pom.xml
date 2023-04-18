@@ -15,9 +15,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <damlVersion>2.5.0</damlVersion>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <damlVersion>2.6.0</damlVersion>
         <customViewsVersion>2.5.0.1</customViewsVersion>
         <daml-codegen-java.output>${project.build.directory}/generated-sources/iou</daml-codegen-java.output>
         <ledgerhost>localhost</ledgerhost>
