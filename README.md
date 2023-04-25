@@ -94,3 +94,14 @@ Run k6 test with following command:
 ```
 k6 run k6\test.js -e ISSUER_PARTY="$PARTY_ID"
 ```
+
+Start batched projection runner with the following command:
+```
+mvn exec:java -Dexec.mainClass="com.daml.quickstart.iou.BatchedProjectionRunner" -Dexec.args="$PARTY_ID"
+```
+
+Run k6 test with following command:
+(This will create a contract with increasing time interval starting from 1m, then 2m and so on for 6 hours)
+```
+k6 run k6\test.js -e ISSUER_PARTY="$PARTY_ID" -e TEST_2_RUN=test
+```

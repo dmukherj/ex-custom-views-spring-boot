@@ -21,7 +21,7 @@ switch (Execution) {
   case ExecutionType.load:
     ExecutionOptions_Scenarios = {
       CreateIou_Scenario: {
-        exec: 'createIouTest',
+        exec: 'createIouLoad',
         executor: 'shared-iterations',
         iterations: 10000,
         maxDuration: '60m',
@@ -35,7 +35,7 @@ switch (Execution) {
         exec: 'createIouTest',
         executor: 'constant-vus',
         vus: 1,
-        duration: '180m',
+        duration: '360m',
       }
     }
   break;
@@ -53,7 +53,7 @@ export function setup() {
   return params;
 }
 
-export function createIouTest(params) {
+export function createIouLoad(params) {
 
   let iouCid;
   group('Create iou', () => {
@@ -66,6 +66,24 @@ export function createIouTest(params) {
   });
 
   sleep(1);
+}
+
+export function createIouTest(params) {
+
+  let iouCid;
+  group('Create iou', () => {
+    const res = http.post(createUrl, JSON.stringify(issueIouContract(issuerParty)), params);
+    if (check(res, { 'Created iou successfully': r => r.status === 200 })) {
+      iouCid = res.json().result.contractId;
+      console.log('Created iou cid ' + iouCid)
+    } else {
+      fail(`Failed to create iou ${JSON.stringify(res.body)}`);
+    }
+  });
+
+  const sleepDuration = 60 * __ITER;
+  console.log('Sleep for ' + sleepDuration/60 + 'm')
+  sleep(sleepDuration);
 }
 
 function issueIouContract(issuerParty) {
